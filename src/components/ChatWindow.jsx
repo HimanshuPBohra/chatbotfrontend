@@ -4,6 +4,8 @@ import Message from "./Message";
 import { ChevronLeft, Send, Calendar, Clock, FileText } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// Change this constant to your server's IP or domain as needed
+const API_URL = "http://20.244.39.55:5012";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
@@ -106,7 +108,7 @@ export default function Chatbot() {
         endDate: leaveData.endDate ? leaveData.endDate.toISOString().split('T')[0] : null
       };
 
-      const response = await axios.post("http://127.0.0.1:5000/apply_leave", formattedData);
+      const response = await axios.post("`${API_URL}/apply_leave", formattedData);
       const botMessage = {
         role: "bot",
         content: {
@@ -147,7 +149,7 @@ export default function Chatbot() {
         user_id: leaveData.user_id,
         leave_type: leaveType
       };
-      const response = await axios.post("http://127.0.0.1:5000/leave_balance", payload);
+      const response = await axios.post("`${API_URL}/leave_balance", payload);
       if (response.data.status) {
         const leaveDetails = response.data.data;
         let combinedLeaveBalanceMessage = "";
@@ -264,7 +266,7 @@ export default function Chatbot() {
             }
 
             try {
-              const response = await axios.post("http://127.0.0.1:5000/apply_leave", dataToSubmit);
+              const response = await axios.post("`${API_URL}/apply_leave", dataToSubmit);
               const botMessage = {
                 role: "bot",
                 content: {
@@ -338,7 +340,7 @@ export default function Chatbot() {
     } else {
       setLoading(true);
       try {
-        const response = await axios.post("http://127.0.0.1:5000/chat", { question: messageText });
+        const response = await axios.post("`${API_URL}/chat", { question: messageText });
         const answerContent = response.data.answer;
 
         if (!answerContent) {
