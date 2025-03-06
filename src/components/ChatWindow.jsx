@@ -108,7 +108,7 @@ export default function Chatbot() {
         endDate: leaveData.endDate ? leaveData.endDate.toISOString().split('T')[0] : null
       };
 
-      const response = await axios.post("`${API_URL}/apply_leave", formattedData);
+      const response = await axios.post(`${API_URL}/apply_leave`, formattedData);
       const botMessage = {
         role: "bot",
         content: {
@@ -149,7 +149,7 @@ export default function Chatbot() {
         user_id: leaveData.user_id,
         leave_type: leaveType
       };
-      const response = await axios.post("`${API_URL}/leave_balance", payload);
+      const response = await axios.post(`${API_URL}/leave_balance`, payload);
       if (response.data.status) {
         const leaveDetails = response.data.data;
         let combinedLeaveBalanceMessage = "";
@@ -266,7 +266,7 @@ export default function Chatbot() {
             }
 
             try {
-              const response = await axios.post("`${API_URL}/apply_leave", dataToSubmit);
+              const response = await axios.post(`${API_URL}/apply_leave`, dataToSubmit);
               const botMessage = {
                 role: "bot",
                 content: {
@@ -340,7 +340,7 @@ export default function Chatbot() {
     } else {
       setLoading(true);
       try {
-        const response = await axios.post("`${API_URL}/chat", { question: messageText });
+        const response = await axios.post(`${API_URL}/chat`, { question: messageText });
         const answerContent = response.data.answer;
 
         if (!answerContent) {
@@ -426,11 +426,11 @@ export default function Chatbot() {
               </div>
             </div>
           )}
-          
+
           {messages.map((message, index) => (
             <Message key={index} message={message} onDateSelect={handleDateSelect} onSend={sendMessage} />
           ))}
-          
+
           {loading && (
             <div className="flex items-center space-x-2 text-emerald-500">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
