@@ -5,7 +5,7 @@ import { ChevronLeft, Send, Calendar, Clock, FileText } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 // Change this constant to your server's IP or domain as needed
-const API_URL = "https://20.244.39.55:5012";
+const API_URL = "http://20.244.39.55:5012";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
