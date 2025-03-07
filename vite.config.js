@@ -3,10 +3,13 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  define: {
+    API_URL: JSON.stringify("http://20.244.39.55:5012") // Define API_URL globally
+  },
   server: {
     host: "localhost",
-    port: 5012,  // Using alternate port since 5173 is in use
-    open: true,  // Automatically opens browser
-    strictPort: true  // Prevents conflicts
+    port: 5012,
+    open: false, // Avoids xdg-open error
+    strictPort: true
   }
 });
