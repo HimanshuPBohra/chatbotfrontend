@@ -4,10 +4,13 @@ import Message from "./Message";
 import { ChevronLeft, Send, Calendar, Clock, FileText } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import botBrandLogo from "../assets/uknowva.png"; // Import the bot logo
 // Change this constant to your server's IP or domain as needed
-const API_URL = "https://parser.uknowva.cloud:5012";
+const API_URL = "https://ms.uknowva-stage.in:5012";
 
-export default function Chatbot() {
+export default function Chatbot({
+  botBrandLogoPath = botBrandLogo, // Use the imported bot logo
+}) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -382,34 +385,39 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="flex bg-green-50" style={{ width: '700px', height: '700px', margin: '0 auto' }}>
+    <div className="flex bg-white" style={{ width: '700px', height: '100vh', margin: '0 auto' }}>
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col h-full relative">
         {/* Header */}
-        <div className="bg-green-600 px-4 py-3 flex items-center gap-4 shadow-sm">
+        <div className="bg-green-600 px-3 py-3 flex items-center gap-4 shadow-sm header-bg">
           <button
             onClick={() => setShowSidebar(!showSidebar)}
-            className="lg:hidden text-white hover:text-green-100"
+            className="lg:hidden text-grey-400 hover:text-grey-200"
           >
             <ChevronLeft size={24} />
           </button>
+          <img
+            src={botBrandLogoPath}
+            style={{width:'40px' }}
+            className=" h-auto object-cover"
+          />
           <div>
-            <h1 className="text-xl font-bold text-white">UKNOWVA HRMS Assistant</h1>
-            <p className="text-sm text-green-100">Your AI-powered HR companion</p>
+            <h1 className="text-xl font-bold text-black">uKnowva HRMS Assistant</h1>
+            <p className="text-sm text-black">Your AI-powered HR companion</p>
           </div>
         </div>
 
         {/* Chat Messages */}
         <div
           ref={chatAreaRef}
-          className="flex-1 overflow-y-auto p-4 pb-[200px] space-y-4"
+          className="flex-1 overflow-y-auto p-4 pb-[200px] space-y-4 chat-body"
         >
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
-              <div className="text-2xl font-semibold text-emerald-800">
-                Welcome to UKNOWVA HRMS Assistant
+              <div className="text-2xl font-semibold text-grey-800">
+                Welcome to uKnowva HRMS Assistant
               </div>
-              <div className="text-emerald-600">
+              <div className="text-grey-600">
                 How can I help you today?
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
@@ -417,10 +425,10 @@ export default function Chatbot() {
                   <button
                     key={index}
                     onClick={() => sendMessage(action.query)}
-                    className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-emerald-100 hover:border-emerald-300 group"
+                    className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm  transition-all duration-300 border border-grey-100 hover:border-grey-300 group"
                   >
-                    <action.icon className="text-emerald-600 group-hover:scale-110 transition-transform" size={24} />
-                    <span className="font-medium text-emerald-800">{action.label}</span>
+                    <action.icon className="text-blue-300 group-hover:scale-110 transition-transform" size={24} />
+                    <span className="font-medium text-grey-800">{action.label}</span>
                   </button>
                 ))}
               </div>
@@ -432,22 +440,22 @@ export default function Chatbot() {
           ))}
 
           {loading && (
-            <div className="flex items-center space-x-2 text-emerald-500">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            <div className="flex items-center space-x-2 text-cyan-500">
+              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
             </div>
           )}
         </div>
 
         {/* Quick Actions Bar */}
-        <div className="absolute bottom-[104px] left-0 right-0 bg-white border-t p-2">
-          <div className="flex gap-2 overflow-x-auto pb-2 px-2 max-w-4xl mx-auto">
+        <div className="absolute bottom-[55px] left-0 right-0 bg-white border-t p-2 chat-footer">
+          <div className="flex gap-2 overflow-x-auto px-2 max-w-4xl mx-auto">
             {quickActions.map((action, index) => (
               <button
                 key={index}
                 onClick={() => sendMessage(action.query)}
-                className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 rounded-full hover:bg-emerald-100 transition-colors whitespace-nowrap text-sm text-emerald-700"
+                className="flex items-center gap-2 px-3 py-1.5 bg-cyan-50 rounded-full hover:bg-cyan-100 light_blue_btn   transition-colors whitespace-nowrap text-sm text-cyan-700"
               >
                 <action.icon size={16} />
                 <span>{action.label}</span>
@@ -457,7 +465,7 @@ export default function Chatbot() {
         </div>
 
         {/* Input Area */}
-        <div className="absolute bottom-[40px] left-0 right-0 bg-white border-t p-2.5">
+        <div className="absolute bottom-[0px] left-0 right-0 bg-white border-t p-0">
           <div className="max-w-4xl mx-auto flex gap-4 items-end">
             <div className="flex-1 relative">
               <textarea
@@ -471,13 +479,13 @@ export default function Chatbot() {
                 }}
                 placeholder="Type your message..."
                 rows="1"
-                className="w-full p-3 pr-12 rounded-lg border border-emerald-200 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none resize-none overflow-hidden"
+                className="w-full p-3 pr-12 outline-none resize-none overflow-hidden"
                 style={{ minHeight: '44px', maxHeight: '120px' }}
               />
               <button
                 onClick={() => sendMessage()}
                 disabled={!input.trim() || loading}
-                className="absolute right-3 bottom-3 text-emerald-600 hover:text-emerald-700 disabled:text-gray-400"
+                className="absolute right-3 bottom-3 text-cyan-600 hover:text-cyan-700 disabled:text-gray-400"
               >
                 <Send size={20} />
               </button>
@@ -486,9 +494,9 @@ export default function Chatbot() {
         </div>
 
         {/* Footer */}
-        <div className="absolute bottom-0 left-0 right-0 bg-green-800 text-white py-2 px-4 text-center text-sm select-none shadow-lg" style={{ userSelect: 'none', pointerEvents: 'none', height: '40px' }}>
+       {/* <div className="absolute bottom-0 left-0 right-0 bg-green-800 text-white py-2 px-4 text-center text-sm select-none shadow-lg" style={{ userSelect: 'none', pointerEvents: 'none', height: '40px' }}>
           Powered by <span className="font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white to-green-200 animate-pulse">arham.ai</span>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
