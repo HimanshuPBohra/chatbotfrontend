@@ -10,3 +10,10 @@ body {
   margin: 0;
   min-height: 100vh;
 }
+.header-bg{background: linear-gradient(0deg, rgba(0, 0, 0, 0.02) 0.44%, rgba(0, 0, 0, 0) 49.5%),#ffffff}
+.chat-footer .light_blue_btn,.light_blue_btn{background: rgb(16 138 230 / 10%);border:1px solid rgb(231 243 252);color: #333;}
+.chat-footer .light_blue_btn:hover{background:#fff;border-color: #108ae6}
+.chat-body .blue-bg{background:  #108ae6}
+.chat-body .blue-bubble,.chat-body .blue-bubble:hover{background: #108ae6;padding: 8px 20px;border-radius: 20px;border-top-right-radius: 0px;border: 0px;box-shadow: none;}
+.chat-body .grey-bubble,.chat-body .grey-bubble:hover{background: #f1f1f3;padding: 8px 20px;border-radius: 20px;border-top-left-radius: 0px;border: 0px;box-shadow: none;}
+.inner-bubble{background: rgb(255 255 255 / 60%);border: 0px}
