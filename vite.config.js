@@ -7,7 +7,7 @@ export default defineConfig({
     API_URL: JSON.stringify("http://20.244.39.55:5012") // Define API_URL globally
   },
   server: {
-    host: "localhost",
+    host: "http://20.244.39.55",
     port: 5012,
     open: false, // Avoids xdg-open error
     strictPort: true
