@@ -493,10 +493,10 @@ export default function Chatbot({
           </div>
         </div>
 
-        {/* Footer */}
-       {/* <div className="absolute bottom-0 left-0 right-0 bg-green-800 text-white py-2 px-4 text-center text-sm select-none shadow-lg" style={{ userSelect: 'none', pointerEvents: 'none', height: '40px' }}>
+        * Footer *
+       * <div className="absolute bottom-0 left-0 right-0 bg-green-800 text-white py-2 px-4 text-center text-sm select-none shadow-lg" style={{ userSelect: 'none', pointerEvents: 'none', height: '40px' }}>
           Powered by <span className="font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white to-green-200 animate-pulse">arham.ai</span>
-        </div>*/}
+        </div>*
       </div>
     </div>
   );
